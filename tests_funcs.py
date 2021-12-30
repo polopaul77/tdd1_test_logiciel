@@ -1,3 +1,4 @@
+import numpy as np
 import funcs
 import unittest
 
@@ -31,7 +32,7 @@ class TestFuncs(unittest.TestCase):
 		self.assertEqual(funcs.med_int([13]),13)
 
 	def test_std_int(self):
-		self.assertEqual(funcs.std_int([4,2,5,1,2]),sqrt(2)
+		self.assertEqual(funcs.std_int([1,2,3,4,5]),np.sqrt(2))
 		self.assertEqual(funcs.std_int([1,10]),4.5)
 		self.assertEqual(funcs.std_int([-2,1,10,1]),4.5)
 		self.assertEqual(funcs.std_int([0,0,0,0,0]),0)

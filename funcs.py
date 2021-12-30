@@ -1,3 +1,5 @@
+import numpy as np
+
 def max_int(a,b):
 	if a < b :
 		return b
@@ -12,10 +14,10 @@ def min_int(a,b):
 
 def avg_int(l):
 	n = len(l)
-	sum = 0
+	s = 0
 	for i in range(n):
-		sum += l[i]
-	return sum/n
+		s += l[i]
+	return s/n
 
 def med_int(l):
 	n = len(l)
@@ -24,3 +26,11 @@ def med_int(l):
 		return l[n//2]
 	else:
 		return (l[n//2-1] + l[n//2])/2
+
+def std_int(l):
+	n = len(l)
+	avg = avg_int(l)
+	s = 0
+	for i in range(n):
+		s += np.square(l[i]-avg)
+	return np.sqrt(s/n)
