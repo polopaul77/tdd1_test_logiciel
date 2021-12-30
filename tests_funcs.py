@@ -23,5 +23,12 @@ class TestFuncs(unittest.TestCase):
 		self.assertEqual(funcs.avg_int([0,0,0,0,0]),0)
 		self.assertEqual(funcs.avg_int([13]),13)
 
+	def test_med_int(self):
+		self.assertEqual(funcs.med_int([4,2,5,1,2]),2)
+		self.assertEqual(funcs.med_int([1,10]),5.5)
+		self.assertEqual(funcs.med_int([-2,1,10,1]),1)
+		self.assertEqual(funcs.med_int([0,0,0,0,0]),0)
+		self.assertEqual(funcs.med_int([13]),13)
+
 if __name__ == '__main__':
 	unittest.main()
