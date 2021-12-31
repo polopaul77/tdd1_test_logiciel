@@ -86,3 +86,16 @@ def geo_predict(n,l):
 				ll.append(ll[i-1]*q)
 			return [True, ll]
 
+def ari_predict(n,l):
+	if not is_ari(l):
+		return [False, []]
+	else:
+		if n == 0:
+			return [True, []]
+		else:
+			r = l[1] - l[0]
+
+			ll = [l[-1] + r]
+			for i in range(1,n):
+				ll.append(ll[i-1]+r)
+			return [True, ll]
