@@ -57,6 +57,7 @@ class TestFuncs(unittest.TestCase):
 	def test_geo_predict(self):
 		self.assertEqual(funcs.geo_predict(3, [5,10,20,40,80]), [True, [160,320,640]])
 		self.assertEqual(funcs.geo_predict(1, [2,1,0.5,0.25,0.125]), [True, [0.0625]])
+		self.assertEqual(funcs.geo_predict(0, [1,2,4,8,16]), [True, []])
 		self.assertEqual(funcs.geo_predict(4, [0,0,0,0]), [True, [0,0,0,0]])
 		self.assertEqual(funcs.geo_predict(2, [4,-4,4,-4]), [True, [4,-4]])
 		self.assertEqual(funcs.geo_predict([1,2,3,4]), [False, []])

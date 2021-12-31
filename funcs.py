@@ -68,3 +68,14 @@ def is_ari(l):
 				return False
 
 		return True
+
+def geo_predict(n,l):
+	if !is_geo(l):
+		return [False, []]
+	else:
+		ll = []
+		try:
+			q = l[1]/l[0]
+		except ZeroDivisionError:
+			q = 0
+		for i in range(n)
