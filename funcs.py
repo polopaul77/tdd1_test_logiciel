@@ -44,7 +44,14 @@ def is_geo(l):
 			q = l[1]/l[0]
 		except ZeroDivisionError:
 			q = 0
+
 		for i in range(1,n):
-			if l[i]/l[i-1] != q:
+			try:
+				res = l[i]/l[i-1]
+			except ZeroDivisionError:
+				res = 0
+
+			if res != q:
 				return False
+
 		return True
