@@ -60,9 +60,9 @@ class TestFuncs(unittest.TestCase):
 		self.assertEqual(funcs.geo_predict(0, [1,2,4,8,16]), [True, []])
 		self.assertEqual(funcs.geo_predict(4, [0,0,0,0]), [True, [0,0,0,0]])
 		self.assertEqual(funcs.geo_predict(2, [4,-4,4,-4]), [True, [4,-4]])
-		self.assertEqual(funcs.geo_predict([1,2,3,4]), [False, []])
-		self.assertEqual(funcs.geo_predict([-6,-9,7,1,-1,0]), [False, []])
-		self.assertEqual(funcs.geo_predict([2,6,18,4]), [False, []])
+		self.assertEqual(funcs.geo_predict(4, [1,2,3,4]), [False, []])
+		self.assertEqual(funcs.geo_predict(2, [-6,-9,7,1,-1,0]), [False, []])
+		self.assertEqual(funcs.geo_predict(0, [2,6,18,4]), [False, []])
 
 
 if __name__ == '__main__':
