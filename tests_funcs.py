@@ -39,14 +39,14 @@ class TestFuncs(unittest.TestCase):
 		self.assertEqual(funcs.std_int([13]),0)
 
 	def test_is_geo(self):
-		self.assertEqual(funcs.std_is_geo([5,10,20,40,80]), True)
-		self.assertEqual(funcs.std_is_geo([2,1,0.5,0.25,0.125]), True)
-		self.assertEqual(funcs.std_is_geo([5]), True)
-		self.assertEqual(funcs.std_is_geo([0,0,0,0]), True)
-		self.assertEqual(funcs.std_is_geo([4,-4,4,-4]), True)
-		self.assertEqual(funcs.std_is_geo([1,2,3,4]), False)
-		self.assertEqual(funcs.std_is_geo([-6,-9,7,1,-1,0]), False)
-		self.assertEqual(funcs.std_is_geo([2,6,18,4]), False)
+		self.assertEqual(funcs.is_geo([5,10,20,40,80]), True)
+		self.assertEqual(funcs.is_geo([2,1,0.5,0.25,0.125]), True)
+		self.assertEqual(funcs.is_geo([5]), True)
+		self.assertEqual(funcs.is_geo([0,0,0,0]), True)
+		self.assertEqual(funcs.is_geo([4,-4,4,-4]), True)
+		self.assertEqual(funcs.is_geo([1,2,3,4]), False)
+		self.assertEqual(funcs.is_geo([-6,-9,7,1,-1,0]), False)
+		self.assertEqual(funcs.is_geo([2,6,18,4]), False)
 
 
 if __name__ == '__main__':

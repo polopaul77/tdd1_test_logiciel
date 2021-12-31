@@ -34,3 +34,17 @@ def std_int(l):
 	for i in range(n):
 		s += np.square(l[i]-avg)
 	return np.sqrt(s/n)
+
+def is_geo(l):
+	n = len(l)
+	if n == 1:
+		return True
+	else:
+		try:
+			q = l[1]/l[0]
+		except ZeroDivisionError:
+			q = 0
+		for i in range(1,n):
+			if l[i]/l[i-1] != q:
+				return False
+		return True
