@@ -12,3 +12,6 @@ def is_password_valid(password: str) -> bool:
 
 def user_login(cursor, username: str, password: str) -> bool:
 	return None
+
+def user_create(cursor, username: str, password: str):
+	pass

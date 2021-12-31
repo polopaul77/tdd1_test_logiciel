@@ -44,20 +44,33 @@ class TestFuncs(unittest.TestCase):
 		self.assertFalse(funcs.user_login(cursor, "gerard", "éwi1épetits!"))
 		self.assertFalse(funcs.user_login(cursor, "Neant", "jexistepa"))
 
+	def test_user_create(self):
+		funcs.user_create(cursor, "Username1", "@Password0")
+		funcs.user_create(cursor, "NomUtilisateur", "1__Mdp__!")
+
+		cursor.execute('SELECT username FROM `Users` WHERE username="Username1"')
+		self.assertEqual(len(cursor.fetchall()), 1)
+
+		cursor.execute('SELECT username FROM `Users` WHERE username="NomUtilisateur"')
+		self.assertEqual(len(cursor.fetchall()), 1)
+
+		# tester qu'il ne peut pas y avoir d'utilisateur en double
+		funcs.user_create(cursor, "NomUtilisateur", "1__Mdp__!")
+		cursor.execute('SELECT username FROM `Users` WHERE username="NomUtilisateur"')
+		self.assertEqual(len(cursor.fetchall()), 1)
+
 if __name__ == '__main__':
 	conn = sqlite3.connect('test_database.db')
 	cursor = conn.cursor()
-	cursor.execute("DROP TABLE IF EXISTS `Users`;")
-	cursor.execute("""
-		CREATE TABLE IF NOT EXISTS `Users` (
-			`username` TEXT NOT NULL,
-			`password` VARBINARY(32) NOT NULL,
-			`spublickey` VARCHAR(128) NOT NULL,
-			`sprivatekey` VARCHAR(128) NOT NULL,
-			`epublickey` VARCHAR(128) NOT NULL,
-			`eprivatekey` VARCHAR(128) NOT NULL
-		);
-	""")
+	cursor.execute("DROP TABLE IF EXISTS `Users`")
+	cursor.execute("""CREATE TABLE IF NOT EXISTS `Users` (
+		`username` TEXT NOT NULL,
+		`password` VARBINARY(32) NOT NULL,
+		`spublickey` VARCHAR(128) NOT NULL,
+		`sprivatekey` VARCHAR(128) NOT NULL,
+		`epublickey` VARCHAR(128) NOT NULL,
+		`eprivatekey` VARCHAR(128) NOT NULL
+	)""")
 
 	# remplir quelques utilisateurs arbitrairement
 	users = [
