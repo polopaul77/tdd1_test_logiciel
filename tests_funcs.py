@@ -16,22 +16,24 @@ class TestFuncs(unittest.TestCase):
 		self.assertEqual(funcs.max_int(0,0),0)
 
 	def test_is_username_valid(self):
-		self.assertEqual(funcs.is_username_valid("abc"), True)
-		self.assertEqual(funcs.is_username_valid("XYZ"), True)
-		self.assertEqual(funcs.is_username_valid("Abc123"), True)
-		self.assertEqual(funcs.is_username_valid("a"), False)
-		self.assertEqual(funcs.is_username_valid("Abc-#"), False)
-		self.assertEqual(funcs.is_username_valid("HtmlGoes<br>"), False)
-		self.assertEqual(funcs.is_username_valid("\u00C8re"), False)  # \u00C8 = È
+		self.assertTrue(funcs.is_username_valid("abc"))
+		self.assertTrue(funcs.is_username_valid("XYZ"))
+		self.assertTrue(funcs.is_username_valid("Abc123"))
+
+		self.assertFalse(funcs.is_username_valid("a"))
+		self.assertFalse(funcs.is_username_valid("Abc-#"))
+		self.assertFalse(funcs.is_username_valid("HtmlGoes<br>"))
+		self.assertFalse(funcs.is_username_valid("\u00C8re"))  # \u00C8 = È
 
 	def test_is_password_valid(self):
-		self.assertEqual(funcs.is_password_valid("Abcdef#1"), True)
-		self.assertEqual(funcs.is_password_valid("SecretPa§w0rδ"), True)
-		self.assertEqual(funcs.is_password_valid("\u00C8É{_n00b"), True)  # \u00C8 = È
-		self.assertEqual(funcs.is_password_valid("Abc#1"), False)
-		self.assertEqual(funcs.is_password_valid("Abc123"), False)
-		self.assertEqual(funcs.is_password_valid("Abc-#"), False)
-		self.assertEqual(funcs.is_password_valid("HtmlGoes<br>"), False)
+		self.assertTrue(funcs.is_password_valid("Abcdef#1"))
+		self.assertTrue(funcs.is_password_valid("SecretPa§w0rδ"))
+		self.assertTrue(funcs.is_password_valid("\u00C8É{_n00b"))  # \u00C8 = È
+
+		self.assertFalse(funcs.is_password_valid("Abc#1"))
+		self.assertFalse(funcs.is_password_valid("Abc123"))
+		self.assertFalse(funcs.is_password_valid("Abc-#"))
+		self.assertFalse(funcs.is_password_valid("HtmlGoes<br>"))
 
 	def test_user_login(self):
 		self.assertTrue(funcs.user_login(cursor, "Gerard", "éwi1épetits!"))
@@ -41,7 +43,6 @@ class TestFuncs(unittest.TestCase):
 		self.assertFalse(funcs.user_login(cursor, "Gerard", "ewi1épetits!"))
 		self.assertFalse(funcs.user_login(cursor, "gerard", "éwi1épetits!"))
 		self.assertFalse(funcs.user_login(cursor, "Neant", "jexistepa"))
-		pass
 
 if __name__ == '__main__':
 	conn = sqlite3.connect('test_database.db')
@@ -71,7 +72,6 @@ if __name__ == '__main__':
 		md5_pass = md5(password.encode())
 		keys = [generate_key() for i in range(4)]
 		cursor.execute("INSERT INTO `Users` VALUES(?, ?, ?, ?, ?, ?)", [username, md5_pass.digest(), *keys])
-		print("Inserted", username)
 
 	unittest.main()
 
