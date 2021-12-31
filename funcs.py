@@ -55,3 +55,16 @@ def is_geo(l):
 				return False
 
 		return True
+
+def is_ari(l):
+	n = len(l)
+	if n == 1:
+		return True
+	else:
+		r = l[1] - l[0]
+
+		for i in range(1,n):
+			if l[i]-l[i-1] != r:
+				return False
+
+		return True
