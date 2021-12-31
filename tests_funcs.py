@@ -64,6 +64,14 @@ class TestFuncs(unittest.TestCase):
 		self.assertEqual(funcs.geo_predict(2, [-6,-9,7,1,-1,0]), [False, []])
 		self.assertEqual(funcs.geo_predict(0, [2,6,18,4]), [False, []])
 
+	def test_ari_predict(self):
+		self.assertEqual(funcs.is_ari(3, [3,5,7,9,11,13]), [True, [15,17,19]])
+		self.assertEqual(funcs.is_ari(1, [10,5,0,-5,-10,-15]), [True, [-20]])
+		self.assertEqual(funcs.is_ari(0, [1,1.5,2]), [True, []])
+		self.assertEqual(funcs.is_ari(2, [0,0,0,0]), [True, [0,0]])
+		self.assertEqual(funcs.is_ari(3, [4,-4,4,-4]), [False, []])
+		self.assertEqual(funcs.is_ari(5, [1,2,4,8,16]), [False, []])
+
 
 if __name__ == '__main__':
 	unittest.main()
