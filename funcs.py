@@ -9,3 +9,6 @@ def is_username_valid(username: str) -> bool:
 
 def is_password_valid(password: str) -> bool:
 	return None
+
+def user_login(cursor, username: str, password: str) -> bool:
+	return None
