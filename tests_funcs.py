@@ -28,12 +28,14 @@ class TestFuncs(unittest.TestCase):
 	def test_is_password_valid(self):
 		self.assertTrue(funcs.is_password_valid("Abcdef#1"))
 		self.assertTrue(funcs.is_password_valid("SecretPa§w0rδ"))
-		self.assertTrue(funcs.is_password_valid("\u00C8É{_n00b"))  # \u00C8 = È
+		self.assertTrue(funcs.is_password_valid("\u00C8ÉE{_n00b"))  # \u00C8 = È
+		self.assertTrue(funcs.is_password_valid("1PassSecretδ"))
 
 		self.assertFalse(funcs.is_password_valid("Abc#1"))
 		self.assertFalse(funcs.is_password_valid("Abc123"))
 		self.assertFalse(funcs.is_password_valid("Abc-#"))
 		self.assertFalse(funcs.is_password_valid("HtmlGoes<br>"))
+		self.assertFalse(funcs.is_password_valid("SPEACSRSEWTO"))
 
 	def test_user_login(self):
 		self.assertTrue(funcs.user_login(cursor, "Gerard", "éwi1épetits!"))
