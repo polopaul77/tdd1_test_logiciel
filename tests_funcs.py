@@ -16,8 +16,8 @@ class TestFuncs(unittest.TestCase):
 		self.assertEqual(funcs.max_int(0,0),0)
 
 	def test_is_username_valid(self):
-		self.assertTrue(funcs.is_username_valid("abc"))
-		self.assertTrue(funcs.is_username_valid("XYZ"))
+		self.assertTrue(funcs.is_username_valid("abcd"))
+		self.assertTrue(funcs.is_username_valid("WXYZ"))
 		self.assertTrue(funcs.is_username_valid("Abc123"))
 
 		self.assertFalse(funcs.is_username_valid("a"))
