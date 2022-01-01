@@ -1,4 +1,5 @@
 import re
+from hashlib import md5
 
 def max_int(a,b):
 	if a < b :
@@ -19,7 +20,9 @@ def is_password_valid(password: str) -> bool:
 	return match is not None and match.group() == password
 
 def user_login(cursor, username: str, password: str) -> bool:
-	return None
+	md5_pass = md5(password.encode())
+	cursor.execute("SELECT username FROM `Users` WHERE username=? AND password=?", [username, md5_pass.digest()])
+	return len(cursor.fetchall()) > 0
 
 def user_create(cursor, username: str, password: str):
 	pass
