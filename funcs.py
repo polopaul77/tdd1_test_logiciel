@@ -45,4 +45,12 @@ def user_get_keys(cursor, username: str) -> Tuple[str, str, str, str]:
 	return cursor.fetchone()
 
 def is_database_corrupted(cursor) -> bool:
-	pass
+	cursor.execute("SELECT * FROM `Users`")
+	for username, password, spuk, sprk, epuk, eprk in cursor.fetchall():
+		if not is_username_valid(username): return True
+		if len(password) == 0: return True
+		if len(spuk) < 128: return True
+		if len(sprk) < 128: return True
+		if len(epuk) < 128: return True
+		if len(eprk) < 128: return True
+	return False
