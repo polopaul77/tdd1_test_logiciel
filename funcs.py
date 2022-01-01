@@ -3,6 +3,7 @@ import re
 import string
 
 from hashlib import md5
+from typing import Tuple
 
 def max_int(a,b):
 	if a < b :
@@ -37,3 +38,7 @@ def user_create(cursor, username: str, password: str):
 			generate_key = lambda : ''.join(random.choice(string.ascii_letters + string.digits + string.punctuation) for i in range(128))
 			keys = [generate_key() for i in range(4)]
 			cursor.execute("INSERT INTO `Users` VALUES(?, ?, ?, ?, ?, ?)", [username, md5_pass.digest(), *keys])
+
+def user_get_keys(cursor, username: str) -> Tuple[str, str, str, str]:
+	"""Il est supposé que username est un utilisateur existant et valide"""
+	pass

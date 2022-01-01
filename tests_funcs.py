@@ -62,6 +62,14 @@ class TestFuncs(unittest.TestCase):
 		cursor.execute('SELECT username FROM `Users` WHERE username="NomUtilisateur"')
 		self.assertEqual(len(cursor.fetchall()), 1)
 
+	def test_user_get_keys(self):
+		keys = funcs.user_get_keys(cursor, "DestroyerDu75")
+		self.assertTrue(isinstance(keys, tuple))
+		self.assertEqual(len(keys), 4)
+		for key in keys:
+			self.assertTrue(isinstance(key, str))
+			self.assertEqual(len(key), 128)
+
 if __name__ == '__main__':
 	conn = sqlite3.connect('test_database.db')
 	cursor = conn.cursor()
