@@ -1,4 +1,7 @@
+import random
 import re
+import string
+
 from hashlib import md5
 
 def max_int(a,b):
@@ -25,4 +28,12 @@ def user_login(cursor, username: str, password: str) -> bool:
 	return len(cursor.fetchall()) > 0
 
 def user_create(cursor, username: str, password: str):
-	pass
+	if is_username_valid(username) and is_password_valid(password):
+		# check if username already exists or not
+		cursor.execute("SELECT username FROM `Users` WHERE username=?", [username])
+		if len(cursor.fetchall()) == 0:
+			# create user and insert in database
+			md5_pass = md5(password.encode())
+			generate_key = lambda : ''.join(random.choice(string.ascii_letters + string.digits + string.punctuation) for i in range(128))
+			keys = [generate_key() for i in range(4)]
+			cursor.execute("INSERT INTO `Users` VALUES(?, ?, ?, ?, ?, ?)", [username, md5_pass.digest(), *keys])
