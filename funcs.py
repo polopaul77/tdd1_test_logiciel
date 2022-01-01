@@ -42,3 +42,6 @@ def user_create(cursor, username: str, password: str):
 def user_get_keys(cursor, username: str) -> Tuple[str, str, str, str]:
 	"""Il est supposé que username est un utilisateur existant et valide"""
 	pass
+
+def is_database_corrupted(cursor) -> bool:
+	pass

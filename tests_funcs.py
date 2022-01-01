@@ -70,6 +70,13 @@ class TestFuncs(unittest.TestCase):
 			self.assertTrue(isinstance(key, str))
 			self.assertEqual(len(key), 128)
 
+	def test_is_database_corrupted(self):
+		self.assertFalse(funcs.is_database_corrupted(cursor))
+
+		# idéalement il faudrait tester la non validité des champs un par un; la flemme
+		cursor.execute("INSERT INTO `Users` VALUES(?, ?, ?, ?, ?, ?)", ["User_incorrect", "MdpNonValide", "1", "2", "3", "4"])
+		self.assertTrue(funcs.is_database_corrupted(cursor))
+
 if __name__ == '__main__':
 	conn = sqlite3.connect('test_database.db')
 	cursor = conn.cursor()
