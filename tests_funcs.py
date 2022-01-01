@@ -1,9 +1,10 @@
 import funcs
-import unittest
-import sqlite3
-from hashlib import md5
-import string
 import random
+import sqlite3
+import string
+import unittest
+
+from hashlib import md5
 
 cursor = None
 
@@ -56,7 +57,7 @@ class TestFuncs(unittest.TestCase):
 		cursor.execute('SELECT username FROM `Users` WHERE username="NomUtilisateur"')
 		self.assertEqual(len(cursor.fetchall()), 1)
 
-		# tester qu'il ne peut pas y avoir d'utilisateur en double
+		# tester l'unicité d'un username
 		funcs.user_create(cursor, "NomUtilisateur", "1__Mdp__!")
 		cursor.execute('SELECT username FROM `Users` WHERE username="NomUtilisateur"')
 		self.assertEqual(len(cursor.fetchall()), 1)
